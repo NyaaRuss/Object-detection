@@ -1,5 +1,3 @@
-pip install opencv
-
 
 import streamlit as st
 import cv2
@@ -7,29 +5,31 @@ import tensorflow as tf
 import numpy as np
 from keras.models import load_model
 from PIL import Image
+import PIL
+
 #Loading the Inception model
 model= load_model('mod.h5',compile=(False))
 
 #Functions
 def splitting(name):
     vidcap = cv2.VideoCapture(name)
-    success,img = vidcap.read()
+    success,frame = vidcap.read()
     count = 0
-    frame_skip=300
-    while success:  
-        success,img = vidcap.read()
-        cv2.imwrite("Images/frame%d.jpg" % count, img)
-        if count % frame_skip ==0:
-            print('frame: {}'.format(count))
-            pil_img= Image.fromarray(img)
-            a=st.image(pil_img)
-            #model.predict(a)
-        count+=1
-        
+    frame_skip =1
+    while success:
+        success, frame = vidcap.read() # get next frame from video
+        cv2.imwrite(r"Images/frame%d.jpg" % count, frame) 
+        if count % frame_skip == 0: # only analyze every n=300 frames
+            print('frame: {}'.format(count)) 
+            pil_img = Image.fromarray(frame) # convert opencv frame (with type()==numpy) into PIL Image
+            st.image(pil_img)
+        if count > 20 :
+            break
+        count += 1
     preprocessing()
 
 def preprocessing():
-    x = tf.io.read_file(a)
+    x = tf.io.read_file('Images/frame0.jpg')
     x = tf.io.decode_image(x,channels=3) 
     x = tf.image.resize(x,[299,299])
     x = tf.expand_dims(x, axis=0)
@@ -41,28 +41,35 @@ def predict(x):
     return P
     
 def main():
-    st.title("Computer Vision,Deep Learning Model.")
-    
+    st.title("Object Detection")
+
     file = st.file_uploader("Upload video",type=(['mp4']))
-    if file is not None:
-        path = file.name
-        with open(path,mode='wb') as f: 
-          f.write(file.read())         
-        st.success("Saved File")
-        
-        video_file = open(path, "rb").read()
+    if file is not None: # run only when user uploads video
+        vid = file.name
+        with open(vid, mode='wb') as f:
+            f.write(file.read()) # save video 
+
+        st.markdown(f"""
+        ### Files
+        - {vid}
+        """,
+        unsafe_allow_html=True) # display file name
+
+        video_file = open(vid, "rb").read()
 
         st.video(video_file)
+
+        vidcap = cv2.VideoCapture(vid) # load video 
+        cur_frame = 0
+        success = True
         
     if st.button("Detect"):
-        output1 = splitting(path)
+        output1 = splitting(vid)
         output2 = preprocessing()
         output = predict(output2)
     
-        st.success('The Output is {}'.format(output))
-        #st.success(output)
+        st.success(output)
 
         
 if __name__=='__main__':
-
     main()
