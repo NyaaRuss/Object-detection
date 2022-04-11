@@ -62,9 +62,9 @@ def object_detection(search_key, frame, model):
 
 # Main App
 def main():
-    """Deployment using Streamlit"""
+
     st.title("Object Detection")
-    st.text("Built with Streamlit and Inceptionv3")
+    st.subheader("Built with Streamlit and Inceptionv3")
 
     st.title("Instructions to be followed")
     st.text("1. Upload the video first")
@@ -135,6 +135,7 @@ def main():
 
     elif choice == "About":
         st.subheader('Nyasha And Gabriella partnership')
+        st.text("R204449M--Nyasha Zhou and R205991K--Gabriella Kapishe")
 
 
 if __name__ == '__main__':
