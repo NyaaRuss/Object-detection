@@ -4,10 +4,9 @@ import tensorflow as tf
 import numpy as np
 import sys
 from keras.models import load_model
-from keras.applications.inception_v3 import InceptionV3
+
 # Loading the Inception model
-#model = load_model('../mod.h5')
-model = InceptionV3()
+model = load_model('mod.h5', compile=(False))
 
 
 # Functions
