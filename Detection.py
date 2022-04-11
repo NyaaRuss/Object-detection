@@ -56,12 +56,8 @@ def object_detection(search_key, frame, model):
     if label.find(search_key) > -1:
         st.image(frame, caption=label)
 
-        # return sys.exit()
     else:
         pass
-        #st.text('Not Found')
-
-        # return sys.exit()
 
 
 # Main App
@@ -69,6 +65,11 @@ def main():
     """Deployment using Streamlit"""
     st.title("Object Detection")
     st.text("Built with Streamlit and Inceptionv3")
+
+    st.title("Instructions to be followed")
+    st.text("1. Upload the video first")
+    st.text("2. Detect")
+    st.text("3. Then search any object in the video")
 
     activities = ["Detect Objects", "About"]
     choice = st.sidebar.selectbox("Choose Activity", activities)
@@ -95,19 +96,13 @@ def main():
 
             if st.button("Detect Objects"):
 
-                # Start the video prediction loop
                 while cap.isOpened():
                     ret, frame = cap.read()
 
                     if not ret:
                         break
 
-                    # Perform object detection
-                    #frame = object_detection(frame, model)
                     predict(frame, model)
-
-                    # Display the resulting frame
-                    #st.image(frame, caption='Video Stream', use_column_width=True)
 
                 cap.release()
                 output.release()
