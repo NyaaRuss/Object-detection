@@ -6,7 +6,7 @@ import sys
 from keras.models import load_model
 
 # Loading the Inception model
-model = load_model('mod.h5', compile=(False))
+model = load_model('../mod.h5')
 
 
 # Functions
