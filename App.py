@@ -111,6 +111,7 @@ def main():
 
                 cap.release()
                 output.release()
+              
 
             key = st.text_input('Search key')
             key = key.lower()
