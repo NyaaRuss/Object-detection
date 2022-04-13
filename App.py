@@ -111,7 +111,6 @@ def main():
 
                 cap.release()
                 output.release()
-                cv2.destroyAllWindows()
 
             key = st.text_input('Search key')
             key = key.lower()
