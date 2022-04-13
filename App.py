@@ -111,7 +111,12 @@ def main():
 
                 cap.release()
                 output.release()
-              
+
+
+<< << << < HEAD: Detection.py
+
+== == == =
+>>>>>> > 9fb29976b2dec30a4478118abc439312ce13fcfd: App.py
 
             key = st.text_input('Search key')
             key = key.lower()
@@ -129,7 +134,7 @@ def main():
 
                         # Perform object detection
                         object_detection(key, frame, model)
-                        #frame = predict(frame, model)
+                        # frame = predict(frame, model)
 
                         # Display the resulting frame
                     cap.release()
