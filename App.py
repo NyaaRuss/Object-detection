@@ -58,8 +58,8 @@ def object_detection(search_key, frame, model):
 
         # return sys.exit()
     else:
-        pass
-        st.text('Not Found')
+        if label.find == None:
+            st.text('Not Found')
 
 
 # Main App
@@ -111,6 +111,7 @@ def main():
 
                 cap.release()
                 output.release()
+              
 
             key = st.text_input('Search key')
             key = key.lower()
