@@ -1,1 +1,1 @@
-https://share.streamlit.io/nyaaruss/object-detection/main/App.py
+https://share.streamlit.io/nyaaruss/object-detection/main/App.p
