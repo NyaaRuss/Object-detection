@@ -137,8 +137,8 @@ def main():
                     cv2.destroyAllWindows()
 
     elif choice == "About":
-        st.subheader('Author: Nyasha R Zhou (nyasha.zhou@students.uz.ac.zw) and Samuel Singende (samuelsingende@gmail.com)')
-        st.text("Nyasha--R204449M and Samuel --R204440W")
+        st.subheader('Author: Nyasha R Zhou')
+        st.text("R204449M")
 
 
 if __name__ == '__main__':
