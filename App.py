@@ -137,7 +137,7 @@ def main():
                     cv2.destroyAllWindows()
 
     elif choice == "About":
-        st.subheader('Author: Nyasha')
+        st.subheader('Author: Nyasha R ZHou')
         st.text("R204449M")
 
 
